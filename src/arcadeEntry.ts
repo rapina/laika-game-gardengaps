@@ -43,6 +43,7 @@ export function mountGame(options: Options) {
     options.root.appendChild(shell)
     const runtimeAssetBase = options.assetBaseUrl === '/' ? new URL('./', import.meta.url).href : options.assetBaseUrl
     const game = new GardenGame(runtimeAssetBase)
+    game.setLocale(options.locale ?? 'ko')
     void game.mount(host, {
         onGameOver: (result) => emit('ended', { runId: String(run), result }),
     }).then(() => {

@@ -60,3 +60,9 @@
 - 프롬프트는 `art/prompts/laika-gardengaps.md`, 해시와 얼굴·발·문자·모바일 크롭 검수는 `art/provenance/laika-gardengaps.json`에 기록했다.
 - 웹 파생본은 `public/art/laika-gardengaps-640.jpg`와 `public/art/laika-gardengaps-1280.jpg`다. 생성 원본 PNG는 릴리스 경로에 넣지 않았다.
 - manifest에는 잠긴 필드를 유지하고 `credits`, `whyCreated`, `media.makerIllustration`만 추가했다. 실제 제작 모델은 `gpt-5.6-sol`로 기록했다.
+
+## 공개 전 호스트 수명주기 보완
+
+로컬 아케이드 등록 중 포털이 전달하는 언어·일시정지·음소거·재시작 명령을 엔트리는 받지만 게임 런타임이 구현하지 않은 점을 확인했다. 독립 실행의 URL 언어만 읽던 경로를 런타임 `locale` 상태로 바꾸고, 호스트의 `setLocale`이 제목·상태·가이드·결과 문구를 현재 판을 유지한 채 갱신하게 했다. `pause`는 Pixi ticker와 오디오를 함께 멈추고, `mute`는 첫 입력 전 무음 계약을 유지하며 오디오만 제어한다. 호스트 재시작도 첫 구간 상태를 복원한다. `__gameState`에는 포털 검증이 결과 측정에만 쓸 locale·paused·muted를 노출했다.
+
+수정 뒤 `npm test` 25/25, TypeScript, 웹 빌드, puzzle 시뮬레이션, smoke, 뷰포트 8/8과 게임오버 4/4, 아케이드 빌드, CSP, 실제 포인터 화면 단서 완주를 모두 다시 실행했다. 최종 증거 sourceHash는 `1d99599cd34f96144bc62d2948c01671d9bf5961522bb0a7883ba198f1ca732f`이며 포인터는 첫 실패 뒤 회복해 추가 실패 없이 8구간을 완주했다.
