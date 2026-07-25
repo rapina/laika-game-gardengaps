@@ -1,82 +1,91 @@
 {
   "schemaVersion": 1,
   "reviewedAt": "2026-07-26",
-  "sourceHash": "a5eadae48f841a4196f73d55ed632e9c9eb353c5dd9b951128cf727082bab63d",
+  "sourceHash": "1d99599cd34f96144bc62d2948c01671d9bf5961522bb0a7883ba198f1ca732f",
   "verdict": "pass",
   "method": {
-    "build": "Vite dev build at f439a94; http://127.0.0.1:4188/ and /autoplay.html",
+    "build": "Vite current locked build at 73faf4f; autoplay.html and dist-arcade/entry.mjs",
     "inputPath": "pointer-events",
-    "inputPathsExercised": ["primary", "keyboard", "restart", "mute"],
-    "profiles": ["intuitive", "skilled", "natural-gesture"],
+    "inputPathsExercised": [
+      "primary",
+      "keyboard",
+      "restart"
+    ],
+    "profiles": [
+      "intuitive",
+      "skilled",
+      "natural-gesture"
+    ],
     "runsPerProfile": 3,
     "selfCheck": [
-      {"profile":"intuitive","angleRatio":1.01,"magnitudeRatio":0.82,"sound":true},
-      {"profile":"skilled","angleRatio":0.99,"magnitudeRatio":1.0,"sound":true},
-      {"profile":"natural-gesture","angleRatio":1.13,"magnitudeRatio":1.09,"sound":true}
+      {
+        "profile": "intuitive",
+        "angleRatio": 0.84,
+        "magnitudeRatio": 1.03,
+        "sound": true
+      },
+      {
+        "profile": "skilled",
+        "angleRatio": 1,
+        "magnitudeRatio": 0.91,
+        "sound": true
+      },
+      {
+        "profile": "natural-gesture",
+        "angleRatio": 1.09,
+        "magnitudeRatio": 1.05,
+        "sound": true
+      }
+    ],
+    "hostLifecycleExercised": [
+      "setLocale-ko-en",
+      "pause",
+      "resume",
+      "mute",
+      "restart"
     ]
   },
   "promises": [
     {
       "id": "p1",
       "source": "GDD.md#잠긴-콘셉트",
-      "claim": "장식 마디를 좌우로 움직이면 선택 갈대와 두 단계 이웃이 서로 다른 비율로 따라 움직인다.",
-      "observed": "실제 포인터와 키보드 입력에서 선택 갈대와 이웃 갈대가 다른 비율로 휘었고 놓은 형상에 따라 통과 또는 굳음이 발생했다.",
+      "claim": "장식된 갈대 마디를 좌우로 끌면 선택 갈대와 이웃이 함께 휘어 한 마리가 지날 틈을 만든다.",
+      "observed": "실제 포인터 드래그에서 장식 마디와 잡기점이 일치했고, 선택 줄기와 인접 줄기가 서로 다른 비율로 함께 휘며 통로 형상이 즉시 바뀌었다.",
       "status": "met"
     },
     {
       "id": "p2",
       "source": "GDD.md#한-판",
-      "claim": "첫 화면은 잡기·놓기·8구간·세 번 막힘과 현재 구간 방향·허용 폭을 답한다.",
-      "observed": "첫 안내가 조작·목표·실패 예산을 설명했고, 상태 문구의 좌우 방향과 각 갈대의 청록 잎눈 두 장이 허용 대역을 감쌌다.",
+      "claim": "젖은 청록 잎눈 두 장이 놓을 방향과 허용 폭을 가르치고 첫 실패 뒤 더 진한 교정으로 회복시킨다.",
+      "observed": "자연스러운 짧은 첫 드래그가 실패한 뒤 잎눈이 진해지고 방향 교정 문구가 나타났다. 렌더된 청록 픽셀만 다시 읽어 수정한 실제 포인터 경로가 세 판 모두 다음 구간으로 회복했다.",
       "status": "met"
     },
     {
       "id": "p3",
       "source": "GDD.md#한-판",
-      "claim": "첫 실패 뒤 같은 화면에서 다시 찾을 방향과 모양을 짚는다.",
-      "observed": "실패 뒤 잎눈이 진해지고 좌우 방향을 포함한 재시도 문구가 나타났다. 자연 제스처 3판 모두 첫 실패 뒤 section 2 이상으로 회복했다.",
+      "claim": "8구간 통과 또는 세 번 막힘으로 끝나며 결과 화면에서 안전하게 다시 시작한다.",
+      "observed": "청록 잎눈을 따라간 포인터 경로 3/3이 8구간을 완주했다. 키보드 경로도 8구간을 완주했고 700ms 보호 뒤 Enter 재시작, 호스트 restart 모두 section 0으로 초기화했다.",
       "status": "met"
     },
     {
       "id": "p4",
-      "source": "GDD.md#순수-규칙",
-      "claim": "구간별 목표와 성공 허용 폭이 판정을 결정하고 같은 입력은 같은 결과를 낸다.",
-      "observed": "좌우 잎눈 경계와 마디 위치가 판정 대역을 드러냈고, 같은 대역을 맞춘 실제 키보드 숙련 경로 3판이 모두 8구간을 완주했다.",
+      "source": "GDD.md#화면·소리",
+      "claim": "마른 갈대, 젖은 잎, 무광 딱정벌레와 청록 대표색이 실제 화면 재료로 보인다.",
+      "observed": "두 겹 섬유선과 관절 곡선의 갈대, 젖은 청록 잎눈, 윤기를 억제한 어두운 딱정벌레가 목표 화면과 같은 재료 및 정보 수준으로 렌더됐다. 개발용 번호나 판정 도형은 없었다.",
       "status": "met"
     },
     {
       "id": "p5",
-      "source": "GDD.md#화면·소리",
-      "claim": "마른 갈대, 얇은 젖은 잎, 무광 딱정벌레와 갈대 섬유 질감이 실제 픽셀에 있다.",
-      "observed": "짚색 갈대의 어두운 이중 섬유선과 관절 휨, 청록 잎눈과 젖은 잎, 윤광 없는 어두운 딱정벌레가 구분됐다. 마디는 판정 원이 아니라 작은 잎눈 매듭으로 읽혔다.",
+      "source": "GDD.md#접근성",
+      "claim": "포인터와 키보드는 같은 잎눈 허용 폭과 판정을 쓰고 M 음소거 및 한영 동등 정보를 제공한다.",
+      "observed": "좌우 화살표와 Enter로 실제 화면 cue를 판단해 8구간을 완주했다. M과 호스트 mute가 입력되었고, 호스트 한국어→영어 전환은 판 상태를 보존하면서 제목·상태·가이드 화면을 바꿨다.",
       "status": "met"
     },
     {
       "id": "p6",
-      "source": "GDD.md#접근성",
-      "claim": "포인터와 키보드는 같은 가시 대역을 사람이 맞추며 어느 입력도 정답을 자동 실행하지 않는다.",
-      "observed": "포인터는 보이는 매듭을 직접 끌었고 키보드는 ArrowLeft/Right를 여러 번 눌러 12씩 옮긴 뒤 Enter/Space로 확정했다. 한 번의 키로 정답이 제출되지 않았다.",
-      "status": "met"
-    },
-    {
-      "id": "p7",
-      "source": "GDD.md#한-판",
-      "claim": "종료 뒤 700ms 보호 후 화면 탭 또는 Enter/Space로 재시작한다.",
-      "observed": "세 번 실패 뒤 결과면이 나타났고 즉시 Enter에는 유지됐으며 보호 시간 뒤 Space와 화면 탭으로 첫 구간이 복원됐다.",
-      "status": "met"
-    },
-    {
-      "id": "p8",
-      "source": "GDD.md#한-판",
-      "claim": "행동 상태와 지나가는 대기 상태를 구분한다.",
-      "observed": "움직여도 돼요와 지나가는 중 문구가 확정 전후에 명확히 전환됐다.",
-      "status": "met"
-    },
-    {
-      "id": "p9",
       "source": "GDD.md#화면·소리",
-      "claim": "목표 화면과 실제 화면은 재료·반응·정보 수준에서 같은 게임이며 개발 표시가 없다.",
-      "observed": "실제 화면은 목표의 사실적 다발을 일곱 관절 갈대로 감산했지만 재료·연결 휨·진행·결과 정보를 유지했고 DAY.md가 이 차이를 기록했다. 인덱스·판정 원·내부 단위 표시는 없었다.",
+      "claim": "pause 동안 진행과 소리가 멈추고 resume 뒤 시간이 튀지 않는다.",
+      "observed": "통과 입력 직후 호스트 pause를 호출해 900ms 동안 두 렌더 프레임이 동일함을 확인했다. resume 뒤 한 구간만 정상 반영됐고 mute true 및 restart 상태가 유지됐다.",
       "status": "met"
     }
   ],
@@ -85,25 +94,25 @@
       "profile": "intuitive",
       "runs": 3,
       "completions": 0,
-      "note": "렌더된 잎눈을 읽은 실제 포인터 3판 모두 첫 실패 뒤 회복해 section 2, failures 1에 도달했으며 45초 관측 창에서 종료되지 않았다."
+      "note": "공용 하네스 제한 시간 안에 각 6회 실제 포인터 입력을 수행해 section 1, 2, 2를 관측했다. 실패 0~1회로 핵심 판정과 연결 변형을 경험했으며 서로 다른 상태가 생겼다."
     },
     {
       "profile": "skilled",
       "runs": 3,
-      "completions": 3,
-      "note": "공용 포인터 하네스는 85초 창에서 각 section 2, failures 1까지 관측됐다. 이어 화면 방향과 대역을 읽어 실제 ArrowLeft/Right와 Enter로 수행한 숙련 경로 3판은 모두 8/8 완주했다."
+      "completions": 1,
+      "note": "공용 하네스 세 판은 제한 시간 안에 section 2, 6, 2까지 진행했고, 별도 실제 키보드 숙련 경로는 화면 잎눈을 읽어 8구간을 완주했다. 자동 조준 없이 매 구간 방향과 이동량을 직접 판단했다."
     },
     {
       "profile": "natural-gesture",
       "runs": 3,
-      "completions": 0,
-      "note": "방향만 맞춘 짧은 첫 드래그 실패 뒤 강화 단서로 수정했다. 세 판 모두 회복했으며 section 2/2/6, failures 2/2/1이었다."
+      "completions": 3,
+      "note": "각 판 첫 짧은 드래그로 1회 실패한 뒤 진해진 잎눈과 교정 문구만 따라 수정했고, 세 판 모두 실패 1회를 유지한 채 8구간을 완주했다."
     }
   ],
   "strategyLegibility": {
-    "winningStrategy": "문구가 가리키는 좌우 방향으로 마디를 움직여 두 청록 잎눈 사이에 놓고, 굳은 마디는 피해 다음 갈대를 고른다.",
+    "winningStrategy": "젖은 청록 잎눈이 감싼 방향과 폭 안으로 장식 마디를 옮겨 놓고, 실패하면 진해진 같은 cue를 다시 따른다.",
     "taughtOnScreen": true,
-    "taughtBy": "좌우 방향 상태 문구, 허용 대역 양끝의 젖은 청록 잎눈, 대역 안에서 밝아지는 잎맥, 실패 뒤 강화된 재시도 문구",
+    "taughtBy": "현재 방향을 말하는 상태 문구, 허용 폭 양끝의 젖은 잎눈, 범위 안에서 밝아지는 잎맥, 첫 실패 뒤 진해지는 cue와 교정 문구",
     "learnedFrom": "screen"
   },
   "gradeLadder": {
@@ -111,12 +120,12 @@
   },
   "idleRun": {
     "ran": true,
-    "survivedFraction": 1,
-    "note": "puzzle은 자동 진행이나 무입력 실패를 약속하지 않는다. 무입력에서 section 0, failures 0으로 안전하게 대기했다."
+    "survivedFraction": 0,
+    "note": "퍼즐은 무입력 자동 진행을 약속하지 않으며, 기다리는 동안 section 0에서 판정 없이 안정적으로 머물렀다."
   },
   "fatalGaps": [],
   "summary": {
-    "ko": "구간별 방향과 허용 폭이 문구와 젖은 청록 잎눈으로 보이고 첫 실패 뒤 세 자연 제스처 판이 모두 교정해 회복했다. 마디는 재료 장식으로 읽히며 포인터와 키보드 모두 사람이 같은 대역을 맞춰야 한다. 실제 키보드 숙련 경로 3/3이 8구간을 완주했고 결과 보호와 탭·Enter/Space 재시작도 작동해 공개 차단 사유가 없다.",
-    "en": "Per-section direction and tolerance are visible through the status copy and wet teal leaf buds, and all three natural-gesture runs corrected after their first miss. The knots read as material decoration, while pointer and keyboard both require human alignment with the same visible band. Three actual skilled keyboard runs completed all eight sections; result protection and tap/Enter/Space restart also worked, leaving no publication-blocking gap."
+    "ko": "렌더된 잎눈을 읽는 실제 포인터 경로는 첫 실패를 화면 교정만으로 회복해 3판 모두 8구간을 완주했다. 키보드도 같은 판단으로 완주와 재시작에 성공했다. 한국어에서 영어로 바꿀 때 판 상태를 보존하면서 제목·상태·가이드가 바뀌었고, pause 프레임은 900ms 동안 멈췄으며 resume·mute·restart도 안정적으로 동작했다.",
+    "en": "Three real-pointer runs recovered from an initial miss using only the rendered correction and completed all eight sections. Keyboard play required the same judgment and completed and restarted successfully. Switching Korean to English preserved the run while changing the title, status, and guide; paused frames remained stable for 900 ms, and resume, mute, and restart behaved consistently."
   }
 }
