@@ -203,7 +203,7 @@
     "scripts/test-gate.mjs": "80a4405893447b1b6bda4859fa0b7a5503a78c57c1fe20c1a0a8516acf3f05d7",
     "scripts/verify-release.mjs": "c13e9ab1cc490c347a8ee0cec74e42983ff00d7897224295c5573a9cec3d75fe",
     "scripts/viewport-smoke.mjs": "eaf19b02f1e08916cb1b322a23156b2865a3eeb83199d95bb13d29f5ba31e390",
-    "smoke-result.json": "cf367402cb45864100b2c3ba33c8224f8789a2ebd0d09285d5690b1d4ab7a174",
+    "smoke-result.json": "27486c8534ba4886f1e06a2cf52dc42c9205ab4202026080932bbd77e754e901",
     "smoke.png": "4856ea74ee14c3a6d6bf3df67c4974c2fc32502503fe6ed538f6672f5cae2af3",
     "src/App.tsx": "0f5c059e534f7096b36a95a4d995b2f453cf23a75750c680d32dc0eec956c317",
     "src/ads/ADS.md": "7c9369e75c5247ee7796bf6d3d14bcd60e2cf56fa6f6622fd153505d1c4d42a1",
@@ -214,7 +214,7 @@
     "src/ads/types.ts": "68a360751767d75da175672e1401474e1ce4d515542047925d9dcac8555ba7cd",
     "src/ads/webAd.ts": "40d878ba8ba67da080d1f4ba206ec4d517700c3efa2a0c9c246e3a34e3fddf40",
     "src/appConfig.ts": "e59cd391d6d89687ec7d20946016b5f125bdba9a24badb299353e1c30bc34387",
-    "src/arcadeEntry.ts": "471a82887c89309097bd8ca9c353fce01abea94c8e5fdf1e1ab8805b0d3a0241",
+    "src/arcadeEntry.ts": "78963e1f6ad6082b6b41b98ed08eb6766daed685f2ed5b45f42f64d83e2c4626",
     "src/audio/BGMManager.ts": "197dcf8a0544fc393b9e883c2ff4b81011522954cf19bae9e9a856bcd354864b",
     "src/audio/SFXManager.ts": "d1d8b84694858687adfa9a6e3b543b83b44fe32c1fd08c5ae78f8bd19a288beb",
     "src/audio/SFXSynth.ts": "c61837a7fd988ed33e1f953dd9c409bfe1992210b8bdb55fd16eced36b34065e",
@@ -225,7 +225,7 @@
     "src/components/GameScreen.tsx": "351db427b71f901d19a102b7ed26e30496725a78779bab7819004cb5cdb16be4",
     "src/components/MobileFrame.tsx": "2eeb7ee6b1ab3e1f566d735992c97c7b3015e740ef5333c517816f53cafd0834",
     "src/components/Modal.tsx": "93378499480f371d6f52832406c06120c5a2f44e4ac031b0e8acda8584b2bd77",
-    "src/game/GardenGame.ts": "431925d987ae23745683ab39d8de086c4923a7f651320af4831636852e103cd9",
+    "src/game/GardenGame.ts": "97fba2bcb194a70783105194fb894f5d668b97fe5f3557ad7123f97333f13c09",
     "src/game/gardenRules.mjs": "6505ec5748b5d50235d0d8285721ee04f5c03ebb8becd3c8c982840027527e8b",
     "src/game/gardenRules.mjs.d.ts": "51550a6bc23b46ad491767a8bae72a0f0a86129ab0f7b55bfd076964bad7bca0",
     "src/game/gardenRules.test.ts": "593bea670caa0627f7dbb40f9927a48053aedb4b34945535f56f806024b2df7d",
@@ -266,8 +266,8 @@
     "verification/gameover-360x800-portal-ko.png": "cbcff7a16d43ef2242540550b4a53e3c224e0de8a382180832215cf18ac0eec6",
     "verification/gameover-360x800-standalone-en.png": "474ae7a21b9b4938cfb2f871c233921dea022d9c2db1aa49a3bda9ce78d542f1",
     "verification/gameover-360x800-standalone-ko.png": "b58add8aaa4855953773cf8a3567b2c46b424d4826010dc4be164bb540841e29",
-    "verification/playability-result.json": "ec887b1e087e0fcacd9d784fb5acf430db575805da0ef9497eee22d3f2fa1962",
-    "verification/pointer-cue-result.json": "507e0a65a2f08425580e0e3583255d348804225b372d1e0382bf47f4295f6ff4",
+    "verification/playability-result.json": "08de1bbe7a37593941b26232a9584259489b5eb945f032c11b5f34b00f23867f",
+    "verification/pointer-cue-result.json": "25b21200008b8218e2ffd9a97ddad7e53a5c3937142064143391ae34821305ee",
     "verification/viewport-360x800-portal.png": "58f20fc460fd62fbade7d25fa9f72eaf2029cbafcd78be7646e45d213c0298be",
     "verification/viewport-360x800-standalone.png": "bc4cc678f088430a374967c6ba5e3b37fa10a77ab4530e7db974e03c62aa5ed1",
     "verification/viewport-390x844-portal.png": "a863dd838ddebdfabed09c0f637208ecdb143e2e2a59f8dadc9784ea14f1ef0f",
@@ -276,17 +276,17 @@
     "verification/viewport-430x932-standalone.png": "5f931fe70ea46ed4447936f857d4fc91587d84432ab39d7ce0e1f8885875b8c4",
     "verification/viewport-900x760-wide-portal.png": "39d537390a63cba5e35ca03dd550fca4528e4df57d2f306135536e96aaddb3a4",
     "verification/viewport-900x760-wide-standalone.png": "3e6c83906c52abea57d32f70443752455bb1fa63b20cdd5b3246ee4880d4431d",
-    "verification/viewport-result.json": "3525b0d9aff405d4f456f49edf86698dbfe793f5f66cf61ce93d94d85163cf15",
+    "verification/viewport-result.json": "71b3712548288cf9d6925d19b7a947221b3ae3aca74a4a6b7fdb7a0b9b9d6024",
     "vite.config.ts": "c645fb735afddfb2ca68aaec89c8fee25d32ec7ea202e045b7eb0aa57a72b1a1",
     "vitest.config.ts": "539506e625a9fc7407c7eb2a8322a0d7445e5d00ebb8d547fa600d67e307b431"
   },
   "artPrefix": {
-    "bytes": 1594,
-    "sha256": "6aa8a452b763302b632104a644450c42e747a255dd716dafbc5169d70c50d0d1"
+    "bytes": 3264,
+    "sha256": "52c86909d5d604fcf83238aa4d97bbc90ddaf722051ad4d19a3bfdb73761f59b"
   },
   "dayPrefix": {
-    "bytes": 6944,
-    "sha256": "e8a4e1f56f81c70f887bb7b7e88d40343646134efbfa335381c0a02096842cb8"
+    "bytes": 8841,
+    "sha256": "56a110156018b54815489b34e8f253aac6671cbdfb111bc4da67f9295c7f5afa"
   },
   "publicIdentity": {
     "studio": "Sputnik Workshop",
@@ -319,6 +319,18 @@
         "verification/viewport-430x932-standalone.png",
         "verification/viewport-900x760-wide-portal.png",
         "verification/viewport-900x760-wide-standalone.png",
+        "verification/viewport-result.json"
+      ]
+    },
+    {
+      "at": "2026-07-25",
+      "reason": "공개 전 포털 점검에서 호스트 locale, pause, mute, restart 명령이 게임 런타임에 반영되지 않던 계약 결함을 보완",
+      "changed": [
+        "smoke-result.json",
+        "src/arcadeEntry.ts",
+        "src/game/GardenGame.ts",
+        "verification/playability-result.json",
+        "verification/pointer-cue-result.json",
         "verification/viewport-result.json"
       ]
     }
