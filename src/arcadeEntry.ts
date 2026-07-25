@@ -41,7 +41,8 @@ export function mountGame(options: Options) {
     host.className = 'game-host'
     shell.appendChild(host)
     options.root.appendChild(shell)
-    const game = new GardenGame()
+    const runtimeAssetBase = options.assetBaseUrl === '/' ? new URL('./', import.meta.url).href : options.assetBaseUrl
+    const game = new GardenGame(runtimeAssetBase)
     void game.mount(host, {
         onGameOver: (result) => emit('ended', { runId: String(run), result }),
     }).then(() => {

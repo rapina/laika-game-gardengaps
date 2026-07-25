@@ -7,10 +7,12 @@ import { commit, createState, preview, type GardenState } from './gardenRules.mj
 const W=390,H=844, TEAL=0x35b8ad, STRAW=0xb89b6a, BG=0x06141a
 const ko=()=>new URLSearchParams(location.search).get('lang')!=='en' && !navigator.language.startsWith('en')
 export class GardenGame implements GameRuntime {
+ private readonly assetBase:string
  private app:Application|null=null; private state:GardenState=createState(); private cb:GameCallbacks|null=null
  private nodes:Graphics[]=[]; private reeds:Graphics[]=[]; private status:Text|null=null; private progress:Graphics|null=null
  private dragging=-1; private startX=0; private previewOffsets:number[]=[...this.state.offsets]; private passing=false
  private restartAt=0; private destroyed=false; private ro:ResizeObserver|null=null; private audio:AudioContext|null=null
+ constructor(assetBase=''){this.assetBase=assetBase}
  async mount(container:HTMLElement, cb:GameCallbacks){
   this.cb=cb; const app=new Application(); await app.init({width:W,height:H,backgroundColor:BG,antialias:true,resolution:Math.min(devicePixelRatio||1,3)*1.12,autoDensity:true})
   if(this.destroyed){app.destroy(true,{children:true});return} this.app=app; container.appendChild(app.canvas)
@@ -23,7 +25,7 @@ export class GardenGame implements GameRuntime {
  }
  private async drawBackdrop(){
   if(!this.app)return
-  try{const tex=await Assets.load<Texture>('/art/title-key.png');const sp=new Sprite(tex);sp.width=W;sp.height=H;sp.alpha=.17;this.app.stage.addChild(sp)}catch{}
+  try{const base=this.assetBase.replace(/\/?$/,'/');const tex=await Assets.load<Texture>(`${base}art/title-key.png`);const sp=new Sprite(tex);sp.width=W;sp.height=H;sp.alpha=.17;this.app.stage.addChild(sp)}catch{}
   const shade=new Graphics().rect(0,0,W,H).fill({color:BG,alpha:.55});this.app.stage.addChild(shade)
  }
  private drawScene(){
