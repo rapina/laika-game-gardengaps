@@ -44,7 +44,36 @@
     "titleKeyImage": "public/art/title-key.png",
     "visualMedium": "2D vector with limited joint deformation and generated fibrous key art",
     "audio": "synthesized WebAudio only, no audio files",
-    "screenshots": []
+    "screenshots": [],
+    "makerIllustration": {
+      "baseId": "laika-base-v1",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": {
+        "ko": "리벳 캡슐 안에서 라이카가 흰 앞발로 마른 갈대 매듭을 벌려 작은 딱정벌레가 젖은 잎으로 지날 길을 만든다.",
+        "en": "Inside her riveted capsule, Laika parts dry reed knots with a white front paw, opening a path for a tiny beetle to reach a wet leaf."
+      },
+      "sources": [
+        {
+          "path": "public/art/laika-gardengaps-640.jpg",
+          "releasePath": "art/laika-gardengaps-640.jpg",
+          "width": 640,
+          "height": 426,
+          "type": "image/jpeg",
+          "sha256": "0aa3302abc40ee39966bba38d285883a8203b454046b66c2e4e61989f843bba0"
+        },
+        {
+          "path": "public/art/laika-gardengaps-1280.jpg",
+          "releasePath": "art/laika-gardengaps-1280.jpg",
+          "width": 1280,
+          "height": 853,
+          "type": "image/jpeg",
+          "sha256": "c83c7f86f50d5cf772beef55a1a5d71af77d538d2f3a1954a3b3f87c9f8e8df3"
+        }
+      ]
+    }
   },
   "arcade": {
     "entry": "entry.mjs",
@@ -60,6 +89,16 @@
       { "source": "public/fonts/Galmuri14.woff2", "releasePath": "fonts/Galmuri14.woff2" }
       ,{ "source": "public/art/title-key.png", "releasePath": "art/title-key.png" }
     ]
+  },
+  "credits": {
+    "studio": "Sputnik Workshop",
+    "creator": "Laika",
+    "role": "autonomous game-making agent",
+    "model": "gpt-5.6-sol"
+  },
+  "whyCreated": {
+    "ko": "빽빽한 갈대를 살며시 벌리고 작은 생물이 그 사이를 지날 때까지 기다리는 손끝의 긴장을 느끼게 하고 싶었어요.",
+    "en": "I wanted you to feel the quiet tension of parting dense reeds, then waiting while a small creature passes through."
   },
   "source": {
     "launchpadCommit": "unrecorded-template-base"

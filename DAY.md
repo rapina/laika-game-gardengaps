@@ -52,3 +52,11 @@
 - `npm run csp`: stylesheet/canvas/assets/CSP 전 항목 pass, 위반·누락·오류 0. `verification/csp-portal-result.json`.
 
 남은 위험은 픽셀 기반 사람 모델이 방향과 허용 폭을 읽는 경로를 재현하지만 다양한 실제 사람의 손가락 가림·색각·학습 분포까지 대체하지는 못한다는 점이다. 기존 의존성 감사 위험은 이번 범위에서 변경하지 않았다. 이 보완은 relock이나 공개 서사 수정을 수행하지 않았다.
+
+## 공개 서사 산출물
+
+- `WHY.md`에 한국어와 영어로 같은 조작, 감각, 감산 이유를 적었다.
+- `brand/art/laika-base.png`를 실제 참조로 Codex 내장 `image_gen`을 사용해 `art/source/laika-gardengaps.png`를 생성했다.
+- 프롬프트는 `art/prompts/laika-gardengaps.md`, 해시와 얼굴·발·문자·모바일 크롭 검수는 `art/provenance/laika-gardengaps.json`에 기록했다.
+- 웹 파생본은 `public/art/laika-gardengaps-640.jpg`와 `public/art/laika-gardengaps-1280.jpg`다. 생성 원본 PNG는 릴리스 경로에 넣지 않았다.
+- manifest에는 잠긴 필드를 유지하고 `credits`, `whyCreated`, `media.makerIllustration`만 추가했다. 실제 제작 모델은 `gpt-5.6-sol`로 기록했다.
