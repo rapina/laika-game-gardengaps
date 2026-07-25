@@ -15,4 +15,14 @@ describe('garden rules', () => {
     const s=commit(createState(),2,-TARGETS[0])
     expect(s.frozen).toContain(2); expect(s.failures).toBe(1)
   })
+  it('uses the same visible thirty-unit leaf corridor on every section', () => {
+    for (const target of TARGETS) {
+      const section = TARGETS.indexOf(target)
+      const state = { ...createState(), section }
+      expect(commit(state, 3, Math.max(-78, target - 30)).lastSuccess).toBe(true)
+      expect(commit(state, 3, Math.min(78, target + 30)).lastSuccess).toBe(true)
+      if (target + 31 <= 78) expect(commit(state, 3, target + 31).lastSuccess).toBe(false)
+      if (target - 31 >= -78) expect(commit(state, 3, target - 31).lastSuccess).toBe(false)
+    }
+  })
 })

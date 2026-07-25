@@ -31,3 +31,24 @@
 ## 잠금 전 포털 수정
 
 첫 잠금 시 제작 검증 안내에 없던 포털 CSP 증거가 요구되었다. `npm run build:arcade && npm run csp`의 첫 실행은 런타임이 `/art/title-key.png`를 직접 읽어 포털의 불변 자산 경로를 놓쳤고 404 한 건으로 실패했다. 아케이드 엔트리가 전달받은 `assetBaseUrl`을 게임 런타임까지 넘기고, CSP 하네스의 `/` 값은 엔트리 모듈 기준 URL로 해석하도록 고쳤다. 이후 테스트 24/24, TypeScript, 웹/아케이드 빌드, puzzle 시뮬레이션, smoke, 뷰포트, CSP를 모두 다시 실행했으며 CSP 위반·누락·콘솔 오류는 각각 0이었다. 증거는 `verification/csp-portal-result.json`과 `verification/csp-portal-play.png`에 남겼다.
+
+## 첫 독립 검토 뒤 소스 보완
+
+독립 검토는 화면에 구간별 목표 방향·허용 폭이 없고 실패 뒤 교정이 없어서 자연 제스처 3판이 모두 section 0에 머문 점, 핵심 잡기점이 장식 마디가 아니라 빈 판정 원으로 보인 점을 차단 사유로 기록했다. 관측 분포는 intuitive 5/0/5, skilled 0/0/0, natural 0/0/0, 포인터 완주 0이었다. 규칙과 잠긴 시청각 재료는 유지하고 판정식의 `target ±30`을 각 갈대에 붙은 두 장의 청록 젖은 잎눈으로 렌더했다. 마디가 잎눈 사이에 들면 잎맥이 밝아지며, 첫 실패 뒤에는 잎눈과 현재 방향 문구가 강해져 같은 화면에서 교정할 수 있다. 50px 실제 hit target은 유지하되 보이는 중심은 꽃눈 모양의 갈대 매듭으로 바꿨다. 긴 드래그가 마디 밖에서 끝나도 놓기가 결손되지 않도록 global pointer-up을 처리하고, 굳은 마디는 다른 마디 입력을 가로채지 않는다.
+
+키보드는 숨은 정답값을 화살표 한 번으로 제출하던 경로를 제거했다. 이제 화살표마다 가운데 마디를 12씩 움직여 포인터와 같은 실시간 잎눈 대역을 보고, Enter/Space로 놓아 같은 `commit` 판정을 받는다. 따라서 두 입력 모두 방향·형상·허용 오차를 스스로 맞춰야 한다.
+
+재현 가능한 실기 모델 `node scripts/pointer-cue-play.mjs`는 규칙의 `TARGETS`나 내부 목표값을 읽지 않고 캔버스의 청록 픽셀과 보이는 마디 중심에 실제 Playwright 포인터 이벤트를 보낸다. 자연스러운 짧은 첫 제스처는 section 0 / failure 1이었고, 강화된 단서를 다시 읽은 다음 제스처에서 section 1 / failure 1로 회복했다. 이후 실패 추가 없이 section 8을 완주했다. 세부 9개 관측은 `verification/pointer-cue-result.json`에 있으며 `firstFailureImproved`와 `completed`가 모두 true다.
+
+최종 소스 해시 `a5eadae48f841a4196f73d55ed632e9c9eb353c5dd9b951128cf727082bab63d`에서 다음을 다시 실행했다.
+
+- `npm test`: 4 files, 25 tests passed.
+- `npx tsc -b`: 오류 0.
+- `npm run build:web`: 779 modules, main JS 500.97KB / gzip 161.07KB.
+- `node scripts/playability-sim.mjs`: puzzle pass, meaningful actions 8, distinct outcomes 3, reachable goal/reset/choice change true. `verification/playability-result.json`.
+- `npm run smoke`: mounted/finished/resultDelivered/restartVerified true, console/page errors 0. `smoke-result.json`, `smoke.png`.
+- `node scripts/viewport-smoke.mjs`: geometry 8/8 및 ko/en × standalone/portal game-over 4/4 pass, 오류 0. `verification/viewport-result.json`.
+- `npm run build:arcade`: 16 immutable files, 5,311,954 bytes, JS gzip 285,315 bytes; release 검증 통과.
+- `npm run csp`: stylesheet/canvas/assets/CSP 전 항목 pass, 위반·누락·오류 0. `verification/csp-portal-result.json`.
+
+남은 위험은 픽셀 기반 사람 모델이 방향과 허용 폭을 읽는 경로를 재현하지만 다양한 실제 사람의 손가락 가림·색각·학습 분포까지 대체하지는 못한다는 점이다. 기존 의존성 감사 위험은 이번 범위에서 변경하지 않았다. 이 보완은 relock이나 공개 서사 수정을 수행하지 않았다.
