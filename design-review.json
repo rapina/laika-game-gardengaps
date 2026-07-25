@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-07-26",
+  "sourceHash": "4ec07967d1c2a8f95c89f8f512188ffa48648554456a1839207ad01dd36d18d2",
+  "verdict": "blocked",
+  "method": {
+    "build": "npm run dev -- --host 127.0.0.1 --port 4188; /autoplay.html?seed=<seed>&lang=en",
+    "inputPath": "pointer-events",
+    "inputPathsExercised": [
+      "primary",
+      "keyboard",
+      "restart"
+    ],
+    "profiles": [
+      "intuitive",
+      "skilled",
+      "natural-gesture"
+    ],
+    "runsPerProfile": 3,
+    "selfCheck": [
+      {
+        "profile": "intuitive",
+        "angleRatio": 1.03,
+        "magnitudeRatio": 1.04,
+        "sound": true
+      },
+      {
+        "profile": "skilled",
+        "angleRatio": 0.84,
+        "magnitudeRatio": 0.91,
+        "sound": true
+      },
+      {
+        "profile": "natural-gesture",
+        "angleRatio": 0.95,
+        "magnitudeRatio": 1.09,
+        "sound": true
+      }
+    ]
+  },
+  "promises": [
+    {
+      "id": "p1",
+      "source": "GDD.md#잠긴-콘셉트",
+      "claim": "서로 묶여 따라 움직이는 갈대 사이에 한 마리가 지날 틈을 만드는 퍼즐이다.",
+      "observed": "렌더 화면에는 일곱 갈대와 마디, 딱정벌레가 있고 한 마디를 드래그하면 이웃 갈대도 함께 휘었다. 그러나 성공을 뜻하는 실제 통로 경계나 구간별 목표 형상은 표시되지 않았다.",
+      "status": "fatal"
+    },
+    {
+      "id": "p2",
+      "source": "GDD.md#잠긴-콘셉트",
+      "claim": "장식된 마디와 실제 50px 잡기 영역이 일치한다.",
+      "observed": "약 50px 원형 영역을 포인터로 잡아 드래그할 수 있었지만 실제 원은 장식 없는 단색 원이었다. 목표 화면의 꽃무늬 마디 대신 판정 원 자체가 핵심 대상 위에 노출됐다.",
+      "status": "fatal"
+    },
+    {
+      "id": "p3",
+      "source": "GDD.md#잠긴-콘셉트",
+      "claim": "선택 갈대와 한 칸·두 칸 이웃이 서로 다른 비율로 따라가며 실시간 형상이 예상 틈이다.",
+      "observed": "포인터를 누른 채 좌우로 움직이는 동안 선택 갈대와 주변 갈대가 서로 다른 양으로 연속 변형됐다. 드래그 중 캡처에서도 이동량이 즉시 보였다.",
+      "status": "met"
+    },
+    {
+      "id": "p4",
+      "source": "GDD.md#순수-규칙",
+      "claim": "구간별 목표 오프셋과 드래그 절대량으로 통로 성공 폭을 판정한다.",
+      "observed": "드래그 절대량은 갈대 휨으로 보였지만 현재 구간의 목표 방향·오프셋과 성공 폭 66의 경계는 화면에 없었다. 같은 겉보기 행동의 성공 여부를 예측할 화면 정보가 부족했다.",
+      "status": "fatal"
+    },
+    {
+      "id": "p5",
+      "source": "GDD.md#한-판",
+      "claim": "첫 화면은 잡는 곳, 놓는 시점, 8구간 목표와 세 번 막힘을 답한다.",
+      "observed": "첫 화면은 마디 드래그·놓기, 8구간, 세 번 막힘을 한국어와 영어로 설명했다. 다만 안전한 첫 방향과 성공 형상은 답하지 않았다.",
+      "status": "gap"
+    },
+    {
+      "id": "p6",
+      "source": "GDD.md#한-판",
+      "claim": "성공하면 다음 구간으로 가고 실패하면 해당 갈대가 굳으며, 선택에 따라 다른 상태가 된다.",
+      "observed": "실제 포인터 판에서 성공 시 section이 증가했고 실패 시 frozen 집합과 실패 수가 달라졌다. 프로필별 다른 제스처 순서는 0구간, 5구간, 서로 다른 frozen 집합을 만들었다.",
+      "status": "met"
+    },
+    {
+      "id": "p7",
+      "source": "GDD.md#한-판",
+      "claim": "행동 상태와 지나가는 대기 상태를 구분한다.",
+      "observed": "놓은 직후 Shape the gap에서 Let it pass로 문구가 바뀌고 약 520ms 뒤 행동 상태로 돌아왔다.",
+      "status": "met"
+    },
+    {
+      "id": "p8",
+      "source": "GDD.md#한-판",
+      "claim": "종료 뒤 700ms 보호 후 화면 탭 또는 Enter/Space로 재시작한다.",
+      "observed": "8/8 결과 직후 탭은 결과 상태를 유지했고 보호 시간 뒤 Enter는 section 0으로 재시작했다. 별도 실행에서 보호 시간 뒤 결과 화면 탭도 section 0으로 재시작했다.",
+      "status": "met"
+    },
+    {
+      "id": "p9",
+      "source": "GDD.md#화면·소리",
+      "claim": "마른 갈대, 얇은 젖은 잎, 무광 딱정벌레와 청록 대표색이 재료로 보인다.",
+      "observed": "청록색과 어두운 습지 배경은 유지됐고 갈대에는 두 겹 선이 있었다. 그러나 갈대·잎·딱정벌레는 목표 화면의 섬유·잎맥·갑각 질감보다 크게 단순화되어 대부분 평면 벡터 도형으로 읽혔다.",
+      "status": "gap"
+    },
+    {
+      "id": "p10",
+      "source": "GDD.md#화면·소리",
+      "claim": "390×844 논리 화면을 균일 레터박스하고 배경 원재료와 갈대 변형을 함께 사용한다.",
+      "observed": "390×844 브라우저에서 캔버스가 잘리지 않았고 어두운 키 이미지 배경 위에 변형되는 벡터 갈대가 렌더됐다.",
+      "status": "met"
+    },
+    {
+      "id": "p11",
+      "source": "GDD.md#접근성",
+      "claim": "좌우 화살표는 가운데 갈대 묶음을 움직여 확정하고 M은 음소거한다.",
+      "observed": "실제 keydown으로 M과 좌우 화살표를 행사했다. 숨은 목표 순서 Left, Right를 반복하면 8회 입력으로 8/8에 도달했으며 자동 조준은 아니었지만 화면은 그 순서를 알려 주지 않았다.",
+      "status": "gap"
+    },
+    {
+      "id": "p12",
+      "source": "GDD.md#잠긴-콘셉트",
+      "claim": "8구간을 통과하면 잎 아래 숨고 세 번 막히면 길이 닫힌다.",
+      "observed": "키보드 실기 경로는 section 8 결과에 도달했고 포인터 실패 경로는 세 번 실패 결과로 종료됐다. 승패 결과 화면과 재시작 안내가 구분됐다.",
+      "status": "met"
+    },
+    {
+      "id": "p13",
+      "source": "design/targets/first-play.png",
+      "claim": "목표 화면은 질감 있는 갈대와 장식 마디, 연결된 통로 선, 잎과 딱정벌레로 틈을 구성하는 정보를 보여 준다.",
+      "observed": "실제 화면은 일곱 개의 굵은 갈대와 서로 겹친 빈 원형 마디로 축약됐고, 목표 화면의 꽃무늬 장식·연결 통로 선·재료 밀도가 없다. DAY.md는 갈대 수 단순화만 의도적 차이로 기록했다.",
+      "status": "gap"
+    }
+  ],
+  "playObservations": [
+    {
+      "profile": "intuitive",
+      "runs": 3,
+      "completions": 0,
+      "note": "실제 포인터 드래그 13, 13, 14회. 최종 도달 section은 5, 0, 5였고 실패 수는 2, 1, 0이었다. 안내대로 좌우 드래그했지만 정답 방향을 화면에서 고를 수 없었다."
+    },
+    {
+      "profile": "skilled",
+      "runs": 3,
+      "completions": 0,
+      "note": "실제 포인터 드래그 12, 13, 13회. 최종 도달 section은 모두 0이었고 한 판은 세 번 실패로 종료됐다. 목표 순서를 안 상태에서도 이동한 마디를 다시 잡는 시각 정밀도가 필요했고 화면에는 목표 형상 기준이 없었다."
+    },
+    {
+      "profile": "natural-gesture",
+      "runs": 3,
+      "completions": 0,
+      "note": "실제 포인터 드래그 10, 10, 13회. 세 판 모두 section 0, 실패 수 2, 2, 1이었다. 첫 실패 뒤 화면에는 굳은 마디 외에 방향·거리 교정 정보가 없어 회복 전략을 세울 수 없었다."
+    }
+  ],
+  "strategyLegibility": {
+    "winningStrategy": "현재 구간의 숨은 목표 방향을 맞추고 그 목표 오프셋에서 30px 이내가 되도록 아직 굳지 않은 마디를 드래그한다.",
+    "taughtOnScreen": false,
+    "taughtBy": "",
+    "learnedFrom": "experiment"
+  },
+  "gradeLadder": {
+    "present": false
+  },
+  "idleRun": {
+    "ran": true,
+    "survivedFraction": 0,
+    "note": "2초간 무입력으로 section 0, failures 0, over false를 유지했다. 이 puzzle은 자동 진행이나 무입력 실패를 약속하지 않으므로 정상적인 대기이며 차단 사유가 아니다."
+  },
+  "fatalGaps": [
+    "성공 판정에 쓰이는 구간별 목표 방향·오프셋과 성공 폭 경계가 화면에 없어, 실시간 갈대 형상을 보아도 어느 틈이 정답인지 알 수 없다.",
+    "화면 안내와 실패 피드백이 이기는 방법을 가르치지 않는다. 실제 자연 제스처 3판 모두 0구간에 머물렀고 교정 뒤 회복 경로를 구성할 정보가 없었다.",
+    "핵심 잡기 대상이 GDD와 목표 화면의 장식 마디가 아니라 판정 영역을 그대로 드러낸 빈 단색 원으로 남아 있다."
+  ],
+  "summary": {
+    "ko": "갈대 묶음의 연속 변형, 선택에 따른 굳음, 8구간 완주와 결과 보호·재시작은 실제 입력으로 작동했다. 그러나 성공을 결정하는 구간별 목표 방향과 허용 폭이 화면에 없고 실패 뒤 교정 정보도 없어, 플레이어는 보이는 갈대 형상만으로 이기는 방법을 배울 수 없다. 핵심 마디도 장식 대신 판정 원으로 남아 있어 공개를 차단한다.",
+    "en": "Linked reeds deform continuously, choices produce different frozen states, and an eight-section finish plus protected restart all worked through real inputs. However, the per-section target direction and tolerance that determine success are absent from the screen, with no corrective feedback after failure, so a player cannot learn the winning shape from the rendered game. The core nodes also remain exposed hit-area circles rather than the promised decorated joints; publication is blocked."
+  }
+}
