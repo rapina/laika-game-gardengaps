@@ -1,4 +1,4 @@
-package com.example.gametemplate;
+package com.sputnikworkshop.gardengaps;
 
 import com.getcapacitor.BridgeActivity;
 

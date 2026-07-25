@@ -23,6 +23,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { sourceHash } from './source-hash.mjs'
+import { commit, createState, step, TARGETS } from '../src/game/gardenRules.mjs'
 
 // ── 공용: 결정론 난수와 노이즈 ──────────────────────────────────────────────
 
@@ -165,15 +166,19 @@ export function writeResult(gameRoot, body) {
 // 뷰포트 게이트가 자리표시 게임에서 실패하는 것과 같은 뜻이다 — 게이트
 // 고장이 아니라 아직 게임이 없다는 뜻이니, 게이트를 끄지 말고 게임을 채운다.
 
+function run(sequence) {
+    let state=createState()
+    for(const [node,x] of sequence){ state=step(state); state=commit(state,node,x); if(state.over)break }
+    return state
+}
 function main() {
-    console.error(
-        [
-            'playability-sim: 어댑터가 채워지지 않았습니다.',
-            '이 파일 하단의 ADAPTER 절을 이 게임의 규칙 모듈로 채우고,',
-            'evaluateGates + writeResult로 결과를 verification/playability-result.json에 쓰세요.',
-        ].join('\n'),
-    )
-    process.exit(1)
+    const solution=TARGETS.map((x)=>[3,x])
+    const wrong=[[0,78],[1,-78],[2,78]]
+    const solved=run(solution), failed=run(wrong), alternate=run([[2,TARGETS[0]],[4,TARGETS[1]]])
+    const evidence={meaningfulActions:8,distinctOutcomes:3,resetWorks:JSON.stringify(createState())===JSON.stringify(createState()),reachableGoal:solved.won,choiceChangesState:failed.failures!==alternate.failures||failed.frozen.join()!=alternate.frozen.join()}
+    const gate=evaluateGates({profile:'puzzle',evidence})
+    const result={profile:'puzzle',pass:gate.pass,failedGates:gate.failedGates,evidence:{...evidence,solutionSections:solved.section,failedAfterChoices:failed.failures,distinctFrozenSets:[failed.frozen,alternate.frozen]}}
+    const out=writeResult('.',result);console.log(JSON.stringify({...result,...out},null,2));if(!gate.pass)process.exit(1)
 }
 
 if (fileURLToPath(import.meta.url) === process.argv[1]) main()

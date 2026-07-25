@@ -1,18 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { GameResult } from '../game/types'
-import { SampleGame } from '../game/SampleGame'
+import { GardenGame } from '../game/GardenGame'
 
 interface Props {
     onGameOver(result: GameResult): void
     onExit(): void
 }
 
-/**
- * Mounts the game runtime and forwards its lifecycle to the shell.
- * Swap `new SampleGame()` for the real game's runtime — nothing else in the
- * shell needs to change as long as it implements GameRuntime.
- */
+/** Mounts the game runtime and exposes deterministic verification state. */
 export default function GameScreen({ onGameOver, onExit }: Props) {
     const { t } = useTranslation()
     const hostRef = useRef<HTMLDivElement>(null)
@@ -22,7 +18,7 @@ export default function GameScreen({ onGameOver, onExit }: Props) {
         const host = hostRef.current
         if (!host) return
 
-        const game = new SampleGame()
+        const game = new GardenGame()
         game.mount(host, {
             onGameOver: (result) => {
                 if (endedRef.current) return
@@ -47,7 +43,7 @@ export default function GameScreen({ onGameOver, onExit }: Props) {
     return (
         <div className="screen game-screen">
             <div ref={hostRef} className="game-host" />
-            <button className="btn game-exit-btn" onClick={onExit}>
+            <button className="btn game-exit-btn" aria-label={t('game.exit')} onClick={onExit}>
                 {t('game.exit')}
             </button>
         </div>

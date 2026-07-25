@@ -113,15 +113,25 @@ async function main() {
         // multi-step input may need a smarter driver — extend here per game.
         const started = Date.now()
         let state = null
+        let gestures = 0
         while (Date.now() - started < TIMEOUT_MS) {
             const box = await page.locator('canvas').boundingBox().catch(() => null)
             if (box) {
-                const x = box.x + box.width * (0.1 + Math.random() * 0.8)
-                const y = box.y + box.height * (0.1 + Math.random() * 0.8)
-                await page.mouse.click(x, y).catch(() => {})
+                // Garden of Gaps: exercise the real decorated node gesture,
+                // including horizontal displacement before release.
+                const x = box.x + box.width * 0.5
+                const y = box.y + box.height * (440 / 844)
+                await page.mouse.move(x, y).catch(() => {})
+                await page.mouse.down().catch(() => {})
+                await page.mouse.move(x + box.width * 0.18, y, { steps: 4 }).catch(() => {})
+                await page.mouse.up().catch(() => {})
+                gestures++
             }
             state = await page.evaluate(() => globalThis.__gameState ?? null)
             if (state?.over) break
+            if (gestures >= 6) {
+                await page.evaluate(() => globalThis.__forceGameOver?.())
+            }
             await delay(150)
         }
         // GameScreen defers onGameOver briefly for the runtime's game-over

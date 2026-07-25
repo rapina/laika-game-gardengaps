@@ -3,13 +3,12 @@
 // 로컬 단독 실행은 CSP가 없어 멀쩡하므로, 게임 쪽 검증이 전부 초록인 채로 공개된다.
 // maejil·violet·grainsplit·repose에서 네 번 되풀이된 뒤 템플릿으로 올렸다.
 import 'pixi.js/unsafe-eval'
-import { SampleGame } from './game/SampleGame'
+import { GardenGame } from './game/GardenGame'
 import { STORAGE_PREFIX } from './appConfig'
 import './index.css'
 
 /**
- * Arcade embed entry (contract-v1). Swap `new SampleGame()` for the real
- * game runtime — `scripts/new-game.js` rewrites STORAGE_PREFIX to the game
+ * Arcade embed entry (contract-v1). STORAGE_PREFIX is the bridge game
  * slug, which doubles as the bridge gameId.
  *
  * The runner iframe is sandboxed without allow-same-origin: never touch
@@ -42,7 +41,7 @@ export function mountGame(options: Options) {
     host.className = 'game-host'
     shell.appendChild(host)
     options.root.appendChild(shell)
-    const game = new SampleGame()
+    const game = new GardenGame()
     void game.mount(host, {
         onGameOver: (result) => emit('ended', { runId: String(run), result }),
     }).then(() => {

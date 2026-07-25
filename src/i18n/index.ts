@@ -4,7 +4,7 @@ import { translations, type Locale } from './translations'
 import { STORAGE_PREFIX } from '../appConfig'
 
 const STORAGE_KEY = `${STORAGE_PREFIX}-locale`
-const SUPPORTED: Locale[] = ['ko', 'en', 'zh', 'ja']
+const SUPPORTED: Locale[] = ['ko', 'en']
 
 function detectLocale(): Locale {
     try {

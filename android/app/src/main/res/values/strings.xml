@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Game Template</string>
-    <string name="title_activity_main">Game Template</string>
-    <string name="package_name">com.example.gametemplate</string>
-    <string name="custom_url_scheme">com.example.gametemplate</string>
+    <string name="app_name">Garden of Gaps</string>
+    <string name="title_activity_main">Garden of Gaps</string>
+    <string name="package_name">com.sputnikworkshop.gardengaps</string>
+    <string name="custom_url_scheme">com.sputnikworkshop.gardengaps</string>
 </resources>

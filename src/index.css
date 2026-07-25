@@ -29,12 +29,12 @@
 
 /* ======= Theme Tokens — restyle per game ======= */
 :root {
-    --bg: #0c1824;
-    --bg-deep: #060e18;
+    --bg: #07181b;
+    --bg-deep: #02090d;
     --panel: #121e2e;
     --panel-light: #1a2a3c;
     --border-line: #1e3048;
-    --accent: #d4a830;
+    --accent: #35b8ad;
     --accent-dim: rgba(212, 168, 48, 0.15);
     --danger: #ff4438;
     --text: #d0d8e0;
@@ -150,7 +150,15 @@ html, body, #root {
 
 .title-screen {
     justify-content: center;
-    gap: 48px;
+    gap: 34px;
+    isolation: isolate;
+}
+.title-key {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: .55; z-index: -2;
+}
+.title-screen::after {
+    content: ""; position: absolute; inset: 0; background: rgba(2,9,13,.42); z-index: -1;
 }
 .title-logo {
     text-align: center;
@@ -204,7 +212,8 @@ html, body, #root {
     right: 10px;
     font-size: 11px;
     padding: 6px 12px;
-    opacity: 0.75;
+    opacity: 0;
+    width: 44px; height: 44px;
 }
 
 /* ======= Ranking ======= */
